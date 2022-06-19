@@ -1,0 +1,41 @@
+<header class="flx--cs">Register to ExamPal</header>
+<div class="error flx--cs" *ngIf="error">{{ error }}</div>
+<div class="error flx--cs" *ngIf="error">{{ error }}</div>
+<form
+  class="flx flx--v flx--cs"
+  [formGroup]="register"
+  (ngSubmit)="registerSubmit()"
+>
+  <label for="name">Name</label>
+  <input class="input m-sep" id="name" type="text" formControlName="name" />
+
+  <label for="email">Email</label>
+  <input class="input m-sep" id="email" type="email" formControlName="email" />
+
+  <label for="password">Password</label>
+  <input
+    class="input m-sep"
+    id="password"
+    type="password"
+    formControlName="password"
+  />
+
+  <label for="org">Organization</label>
+  <input class="input m-sep" type="text" id="org" formControlName="orgId" />
+
+  <label for="role">Role</label>
+  <select class="input m-sep" id="role" formControlName="role">
+    <option value="1">Student</option>
+    <option value="2">Teacher</option>
+  </select>
+
+  <button
+    class="btn btn--primary"
+    [ngClass]="{ processing: registering }"
+    [disabled]="registering"
+    type="submit"
+    [disabled]="!register.valid"
+  >
+    {{ !registering ? "Register" : "Registering..." }}
+  </button>
+</form>

@@ -1,0 +1,26 @@
+.flx {
+  display: flex;
+
+  &--1 {
+    flex: 1;
+  }
+
+  &--v {
+    flex-direction: column;
+  }
+
+  &--c,
+  &--ac {
+    align-items: center;
+  }
+
+  &--c,
+  &--jc {
+    justify-content: center;
+  }
+
+  &--cs {
+    align-self: center;
+    justify-self: center;
+  }
+}

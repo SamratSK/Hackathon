@@ -1,0 +1,33 @@
+<div class="index">{{ index + 1 }}.</div>
+
+<div class="flx option">
+  <input class="input flx--1" type="text" [(ngModel)]="question.content" />
+  <button
+    class="btn btn btn--primary btn--add"
+    type="button"
+    (click)="addOption()"
+    [disabled]="this.question.options.length >= 4"
+  >
+    <span class="plus">+</span>
+  </button>
+</div>
+
+<div class="option-container">
+  <ng-container *ngFor="let option of question.options; let i = index">
+    <button
+      class="btn check"
+      type="button"
+      (click)="checkOption(i)"
+      [ngClass]="{ checked: option.correct }"
+    ></button>
+    <input class="input" type="text" [(ngModel)]="option.content" />
+    <button
+      class="btn delete btn--danger-rev"
+      type="button"
+      [disabled]="i <= 1"
+      (click)="removeOption(i)"
+    >
+      x
+    </button>
+  </ng-container>
+</div>

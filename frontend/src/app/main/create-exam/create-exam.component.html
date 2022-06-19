@@ -1,0 +1,111 @@
+<form
+  class="container flx flx--v"
+  [formGroup]="createExam"
+  (ngSubmit)="onSubmit()"
+>
+  <header class="m-sep flx flx--ac">
+    <div>{{ data.edit ? "Edit" : "Create" }} exam</div>
+    <button type="button" (click)="close()" class="btn flx flx--c">X</button>
+  </header>
+
+  <label for="name">Name</label>
+  <input
+    class="input m-sep"
+    placeholder="ex. Annual Exam"
+    id="name"
+    type="text"
+    formControlName="name"
+  />
+
+  <label for="desc">Description</label>
+  <input
+    class="input m-sep"
+    placeholder="ex. This is a very important exam"
+    id="desc"
+    type="text"
+    formControlName="description"
+  />
+
+  <label for="subject">Subject</label>
+  <div class="subject flx m-sep">
+    <input
+      type="text"
+      class="input flx--1"
+      id="subject"
+      placeholder="ex. Math"
+      [(ngModel)]="subjectName"
+      [ngModelOptions]="{ standalone: true }"
+    />
+    <button
+      class="btn btn--primary btn--add"
+      type="button"
+      [disabled]="!canAddSubject()"
+      (click)="addSubject()"
+    >
+      <span class="plus">+</span>
+      <span class="text">Subject</span>
+    </button>
+  </div>
+
+  <div class="questions flx flx--1 m-sep">
+    <div class="flx flx--v sub-list">
+      <ng-container *ngIf="exam!.subjects.length > 0; else noSubjects">
+        <button
+          class="btn"
+          type="button"
+          [ngClass]="{ 'btn--primary': selectedSubjectIndex === i }"
+          (click)="selectedSubjectIndex = i"
+          *ngFor="let subject of exam!.subjects; let i = index"
+        >
+          {{ subject.name }}
+        </button>
+      </ng-container>
+      <ng-template #noSubjects>
+        <div class="flx--cs empty">No subjects present</div>
+      </ng-template>
+    </div>
+    <div
+      class="flx flx--v flx--1 question-list"
+      *ngIf="
+        exam?.subjects && (exam?.subjects)![selectedSubjectIndex];
+        else noSelectedSubject
+      "
+    >
+      <div class="question-header flx flx--ac">
+        <div>Questions</div>
+        <button
+          type="button"
+          class="btn btn--primary-rev btn--add"
+          (click)="addQuestion()"
+        >
+          <span class="plus">+</span>
+          <span class="text">Question</span>
+        </button>
+      </div>
+      <div
+        *ngIf="
+          (exam?.subjects)![selectedSubjectIndex].questions.length > 0;
+          else noQuestions
+        "
+        class="flx flx--v flx--1 question-container"
+      >
+        <app-question
+          *ngFor="
+            let question of (exam?.subjects)![selectedSubjectIndex].questions;
+            let i = index
+          "
+          [question]="question"
+        ></app-question>
+      </div>
+      <ng-template #noQuestions>
+        <div class="flx--cs empty">No questions present</div>
+      </ng-template>
+    </div>
+    <ng-template #noSelectedSubject>
+      <div class="flx--cs empty">No subject selected</div>
+    </ng-template>
+  </div>
+  <button class="btn create btn--primary" [disabled]="!createExam.valid">
+    Create Exam
+  </button>
+</form>

@@ -1,0 +1,55 @@
+.btn {
+  cursor: pointer;
+
+  color: var(--fg, inherit);
+  background-color: var(--bg, inherit);
+  border: 1px solid var(--bdr);
+
+  font: inherit;
+  font-size: 90%;
+  font-weight: 600;
+  border-radius: var(--bdr-rad-def);
+  padding: 0.5rem 0.75rem;
+
+  transition: color var(--dur-short), background-color var(--dur-short);
+
+  &:not(:disabled):hover {
+    background-color: var(--hov-bg, inherit) !important;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &--primary {
+    --fg: #fff;
+    --bg: var(--clr-app-primary);
+    --hov-bg: #2c974b;
+    --bdr: #2c974b;
+  }
+
+  &--primary-rev {
+    --fg: var(--clr-app-primary);
+    --bg: #fff;
+    --hov-bg: #e6e6e6;
+    --bdr: #bcbcbc;
+  }
+
+  &--danger-rev {
+    --fg: var(--clr-app-danger);
+    --bg: rgb(246, 182, 182);
+    --hov-bg: rgb(228, 151, 151);
+  }
+
+  &--add {
+    .plus {
+      font-size: 120%;
+      font-weight: 900;
+    }
+
+    .text {
+      margin-left: 0.35rem;
+    }
+  }
+}

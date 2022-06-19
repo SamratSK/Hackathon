@@ -1,0 +1,134 @@
+nav {
+  padding: 0.75rem 0;
+
+  header {
+    height: fit-content;
+    font-size: 150%;
+    margin-right: 1.5rem;
+
+    span {
+      font-weight: 700;
+    }
+  }
+
+  .search {
+    max-width: 40rem;
+    margin-right: 1rem;
+
+    .input {
+      width: 100%;
+      border-radius: 1.5rem;
+      padding: 0.45rem 0.85rem;
+    }
+  }
+
+  .menu {
+    margin-left: auto;
+    position: relative;
+
+    &>.btn {
+      width: 1.75rem;
+      height: 1.75rem;
+      padding: 0;
+      border-radius: 50%;
+      font-size: 80%;
+      background-color: #fff;
+      border: 1px solid var(--clr-bdr);
+
+      --hov-bg: var(--clr-bdr);
+    }
+
+    .popup {
+      background-color: #fff;
+      position: absolute;
+      right: 0;
+      width: max-content;
+      overflow: hidden;
+      border-radius: calc(var(--bdr-rad-def) * 2);
+      border: 1px solid var(--clr-bdr);
+      visibility: collapse;
+      opacity: 0;
+
+      transition: opacity var(--dur-short), visibility var(--dur-short);
+
+      &.visible {
+        visibility: visible;
+        opacity: 1;
+      }
+
+
+      &>.btn {
+        --hov-bg: var(--clr-bdr);
+
+        font-weight: 400;
+        text-align: left;
+        padding: 0.65rem 1rem;
+        border-bottom: 1px solid var(--clr-bdr);
+        border-radius: 0;
+
+        &:last-child {
+          border: none;
+        }
+      }
+    }
+  }
+
+  .add-exam {
+    padding: 0.5rem 0.75rem;
+  }
+}
+
+.exams {
+  .header {
+    .title {
+      font-size: 120%;
+      font-weight: 600;
+    }
+
+    >.btn {
+      margin-left: auto;
+
+      .plus {
+        font-size: 120%;
+        font-weight: 900;
+      }
+
+      .text {
+        margin-left: 0.35rem;
+      }
+    }
+  }
+
+  .exam-container {
+    padding: 0.75rem 0;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+
+    &>.exam {
+      overflow: hidden;
+
+
+      border-radius: 0.25rem;
+      border: 1px solid var(--clr-bdr);
+
+      &>.contents {
+        max-height: 15rem;
+        padding: 0.75rem;
+
+        .message {
+          font-size: 80%;
+          margin-bottom: 0.5rem;
+        }
+
+        .desc {
+          font-size: 90%;
+        }
+      }
+
+      &>.btns>.btn {
+        border-radius: 0;
+      }
+    }
+  }
+}

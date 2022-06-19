@@ -1,0 +1,11 @@
+.input {
+  --clr-input-bg: #f5f8fa;
+
+  font: inherit;
+
+  background-color: var(--clr-input-bg);
+  border: 1px solid var(--clr-bdr);
+
+  padding: 0.35rem 0.5rem;
+  border-radius: var(--bdr-rad-def);
+}

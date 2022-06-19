@@ -1,0 +1,40 @@
+<ng-container *ngIf="exam">
+  <div class="exam-area flx--1">
+    <ng-container *ngIf="questionIndex && subjectIndex"></ng-container>
+    <div class="question">
+      {{ exam!.subjects[subjectIndex!].questions[questionIndex!].content }}
+    </div>
+    <div class="options">
+      <ng-container
+        *ngFor="
+          let option of exam!.subjects[subjectIndex!].questions[questionIndex!]
+            .options
+        "
+      >
+        <button
+          class="btn check"
+          type="button"
+          [class.checked]="option!.correct"
+        ></button>
+      </ng-container>
+    </div>
+  </div>
+  <div class="question-area flx flx--v">
+    <div
+      class="flx flx--v"
+      *ngFor="let subject of exam.subjects; let subIndex = index"
+    >
+      <div>{{ subject.name }}</div>
+      <div class="flx flx--1">
+        <button
+          *ngFor="let question of subject.questions; let qIndex = index"
+          (click)="openQuestion(qIndex, subIndex)"
+        >
+          {{ qIndex + 1 }}
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<!-- (click)="setAnswerKey(question.id, subject.id, )" -->

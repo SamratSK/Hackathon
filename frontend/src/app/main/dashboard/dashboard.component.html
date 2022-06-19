@@ -1,0 +1,61 @@
+<div class="container flx flx--1 flx--v">
+  <nav class="flx flx--ac">
+    <header>Exam<span>Pal</span></header>
+    <form class="search flx--1" [formGroup]="search" (ngSubmit)="onSearch()">
+      <input
+        type="text"
+        class="input"
+        placeholder="Search any exam..."
+        formControlName="text"
+      />
+    </form>
+    <div class="menu" (focusout)="popupOpened = false">
+      <button class="flx flx--c btn" (click)="popupOpened = true">
+        {{ user.name[0].toUpperCase() }}
+      </button>
+      <div class="popup flx flx--v" [ngClass]="{ visible: popupOpened }">
+        <button class="btn">Profile settings</button>
+        <button class="btn">Logout</button>
+      </div>
+    </div>
+  </nav>
+  <main class="exams">
+    <div class="header flx flx--ac">
+      <div class="title">My Exams</div>
+      <button
+        class="btn btn--primary add-exam flx flx--ac"
+        *ngIf="user.role === teacherType"
+        (click)="addExam()"
+      >
+        <span class="plus">+</span>
+        <span class="text">Exam</span>
+      </button>
+    </div>
+    <div class="exam-container">
+      <div class="exam flx" *ngFor="let exam of exams">
+        <div class="contents flx flx--v flx--1">
+          <div class="name">{{ exam.name }}</div>
+          <div class="message">{{ startMessage(exam) }}</div>
+          <div class="desc">{{ exam.description ?? "No description" }}</div>
+        </div>
+        <div class="btns flx flx--v">
+          <button
+            class="btn btn--primary flx--1"
+            *ngIf="user.role === studentType"
+          >
+            Attend
+          </button>
+          <button
+            class="btn btn--primary flx--1"
+            *ngIf="user.role === teacherType"
+          >
+            Edit
+          </button>
+          <button class="btn btn--primary flx--1" *ngIf="exam.completed">
+            Result
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
